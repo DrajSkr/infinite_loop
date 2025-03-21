@@ -6,10 +6,12 @@ var bullet = preload("res://Scenes/bullet.tscn")
 func _ready():
 	Global.connect("shoot",_shoot)
 
+func _draw():
+	draw_circle(Vector2(42.479, 65.4825), 100,Color.BROWN)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	$Label.text = "Fps: "+str(Engine.get_frames_per_second())
 
 func _shoot():
 	var blt = bullet.instantiate()

@@ -12,3 +12,7 @@ func _process(delta):
 	global_position += Vector2(1,0).rotated(global_rotation).normalized()*delta*speed
 	if(dist_travelled>=range):
 		queue_free()
+
+
+func _on_area_2d_body_entered(body):
+	queue_free()

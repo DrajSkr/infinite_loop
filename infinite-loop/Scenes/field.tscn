@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://jvnylyoo38ow"]
+[gd_scene load_steps=4 format=3 uid="uid://jvnylyoo38ow"]
 
 [ext_resource type="Script" path="res://Scripts/field.gd" id="1_a7sgq"]
 [ext_resource type="PackedScene" uid="uid://d0od0l8q8xsvq" path="res://Scenes/player.tscn" id="2_jgqe1"]
+[ext_resource type="PackedScene" uid="uid://dbongenc4lrxq" path="res://Scenes/trees.tscn" id="3_wu46t"]
 
 [node name="field" type="Node2D"]
 script = ExtResource("1_a7sgq")
@@ -9,8 +10,23 @@ script = ExtResource("1_a7sgq")
 [node name="player" parent="." instance=ExtResource("2_jgqe1")]
 position = Vector2(-280, -147)
 
+[node name="pistol" parent="player" index="1"]
+animation = &"shoot"
+
 [node name="bullets" type="Node" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(71, -38)
+
+[node name="Label" type="Label" parent="."]
+offset_left = -920.0
+offset_top = -569.0
+offset_right = -880.0
+offset_bottom = -546.0
+theme_override_font_sizes/font_size = 40
+
+[node name="trees" parent="." instance=ExtResource("3_wu46t")]
+position = Vector2(-393, 121)
+scale = Vector2(3, 3)
 
 [editable path="player"]

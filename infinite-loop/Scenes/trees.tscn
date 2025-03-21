@@ -1,0 +1,117 @@
+[gd_scene load_steps=16 format=3 uid="uid://dbongenc4lrxq"]
+
+[ext_resource type="Texture2D" uid="uid://k8srbf7xvvlk" path="res://Assets/Top_view_of_trees_and_bushes_vector_illustrations_set-removebg-preview.png" id="1_o07p6"]
+[ext_resource type="Script" path="res://Scripts/trees.gd" id="2_ap48o"]
+[ext_resource type="Texture2D" uid="uid://4f5tabys4k2w" path="res://Assets/72d785dfb37464e0b74e6df8799b5341-removebg-preview.png" id="3_0bi4i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wwubl"]
+atlas = ExtResource("1_o07p6")
+region = Rect2(0, 0, 170, 162)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6570f"]
+atlas = ExtResource("1_o07p6")
+region = Rect2(170, 0, 170, 162)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x36yl"]
+atlas = ExtResource("1_o07p6")
+region = Rect2(340, 0, 170, 162)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rorod"]
+atlas = ExtResource("1_o07p6")
+region = Rect2(0, 162, 170, 162)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_belq8"]
+atlas = ExtResource("1_o07p6")
+region = Rect2(170, 162, 170, 162)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_redh4"]
+atlas = ExtResource("1_o07p6")
+region = Rect2(340, 162, 170, 162)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ql3ot"]
+atlas = ExtResource("1_o07p6")
+region = Rect2(0, 324, 170, 162)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wjdyv"]
+atlas = ExtResource("1_o07p6")
+region = Rect2(170, 324, 170, 162)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6nw0h"]
+atlas = ExtResource("1_o07p6")
+region = Rect2(340, 324, 170, 162)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x87vk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wwubl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6570f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x36yl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rorod")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_belq8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_redh4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ql3ot")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wjdyv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6nw0h")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u5b2w"]
+radius = 175.071
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1cdth"]
+radius = 65.0
+
+[node name="trees" type="Node2D"]
+script = ExtResource("2_ap48o")
+
+[node name="leaf" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(7, 3)
+sprite_frames = SubResource("SpriteFrames_x87vk")
+frame = 5
+
+[node name="trunk" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.509804)
+z_index = -1
+texture_filter = 1
+position = Vector2(-2, 11)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_0bi4i")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-2, 11)
+scale = Vector2(0.2, 0.2)
+shape = SubResource("CircleShape2D_u5b2w")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-3, 12)
+shape = SubResource("CircleShape2D_1cdth")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
