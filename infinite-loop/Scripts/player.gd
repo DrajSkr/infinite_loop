@@ -7,7 +7,7 @@ var dir :Vector2=Vector2.ZERO
 var shooting = false
 var reloading = false
 var ammo = FULL_AMMO
-@export var hp=1000
+@export var hp=100
 
 
 
@@ -24,7 +24,7 @@ func _unhandled_input(event):
 
 func _physics_process(delta):
 	if(hp<=0):
-		queue_free()
+		dead()
 	Global.player_pos = global_position
 	look_at(get_global_mouse_position())
 	dir=Vector2((Input.get_action_strength("right")-Input.get_action_strength("left")),(Input.get_action_strength("down")-Input.get_action_strength("up"))).normalized()*speed
@@ -37,7 +37,6 @@ func _physics_process(delta):
 
 	move_and_slide()
 	
-
 func fire():
 	shooting=true
 	$pistol.play("shoot")
@@ -54,4 +53,7 @@ func reload():
 	await get_tree().create_timer(0.67).timeout
 	reloading=false
 	ammo=FULL_AMMO
+
+func dead():
+	queue_free()
 	

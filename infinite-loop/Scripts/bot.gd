@@ -21,6 +21,8 @@ func _process(delta):
 	if($blood.self_modulate.a>0):
 		$blood.self_modulate.a=max($blood.self_modulate.a-0.15,0)
 	if(hp<=0):
+		Global.kill_bot+=1
+		calculate_score()
 		queue_free()
 	$ProgressBar.value = hp
 	look_at(Global.player_pos)
@@ -68,3 +70,5 @@ func shoot():
 	await get_tree().create_timer(0.1).timeout
 	shooting=false
 	
+func calculate_score():
+	Global.score=Global.kill_enemy*5+Global.kill_bot*10

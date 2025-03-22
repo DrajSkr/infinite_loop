@@ -30,6 +30,7 @@ window/size/viewport_height=1200
 Player=""
 Objects=""
 Enemy=""
+Bot=""
 
 [input]
 

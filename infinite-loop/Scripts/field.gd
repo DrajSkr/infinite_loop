@@ -13,6 +13,8 @@ var curr_frame = []
 
 
 func _ready():
+	Global.round+=1
+	
 	for i in range(Global.enemy_pos.size()):
 		spawn_enemies()
 	for i in range($Enemies.get_child_count()):
@@ -31,6 +33,9 @@ func _process(delta):
 		curr_frame.append($player/pistol.frame)
 	for i in range($Enemies.get_child_count()):
 		if($Enemies.get_child(i).hp<=0):
+			if($Enemies.get_child(i).is_in_group("Enemy")):
+				Global.kill_enemy+=1
+			calculate_score()
 			$Enemies.get_child(i).queue_free()
 			Global.enemy_anim.remove_at(i)
 			Global.enemy_frame.remove_at(i)
@@ -84,8 +89,14 @@ func _on_timer_timeout():
 	for i in range($Enemies.get_child_count()):
 		Global.enemy_hp.append($Enemies.get_child(i).hp)
 	Global.enemy_hp.append(100)
-	get_tree().reload_current_scene()
+	round_end()
 	
 func spawn_enemies():
 	var enemies = enemy.instantiate()
 	get_node("Enemies").add_child(enemies)
+
+func round_end():
+	get_tree().reload_current_scene()
+
+func calculate_score():
+	Global.score=Global.kill_enemy*5+Global.kill_bot*10

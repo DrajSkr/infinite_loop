@@ -37,7 +37,7 @@ scale = Vector2(3, 3)
 [node name="bot" parent="bots" instance=ExtResource("4_mfb3g")]
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 10.0
 one_shot = true
 autostart = true
 
