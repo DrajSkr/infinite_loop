@@ -7,6 +7,7 @@ var dir :Vector2=Vector2.ZERO
 var shooting = false
 var reloading = false
 var ammo = FULL_AMMO
+@export var hp=1000
 
 
 
@@ -16,12 +17,14 @@ func _unhandled_input(event):
 			return
 		fire()
 	if(Input.is_action_just_pressed("reload")):
-		if(shooting or reloading):
+		if(shooting or reloading or ammo>=FULL_AMMO):
 			return
 		reload()
 		
 
 func _physics_process(delta):
+	if(hp<=0):
+		queue_free()
 	Global.player_pos = global_position
 	look_at(get_global_mouse_position())
 	dir=Vector2((Input.get_action_strength("right")-Input.get_action_strength("left")),(Input.get_action_strength("down")-Input.get_action_strength("up"))).normalized()*speed

@@ -13,6 +13,7 @@ config_version=5
 config/name="Infinite loop"
 run/main_scene="res://Scenes/field.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
+run/max_fps=60
 config/icon="res://icon.svg"
 
 [autoload]
@@ -27,6 +28,8 @@ window/size/viewport_height=1200
 [global_group]
 
 Player=""
+Objects=""
+Enemy=""
 
 [input]
 
@@ -72,3 +75,5 @@ reload={
 2d_physics/layer_2="player detector"
 2d_physics/layer_3="objects"
 2d_physics/layer_4="bullet"
+2d_physics/layer_5="enemy"
+2d_physics/layer_6="enemy_bullet"

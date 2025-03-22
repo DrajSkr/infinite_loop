@@ -325,7 +325,7 @@ animations = [{
 [node name="player" type="CharacterBody2D" groups=["Player"]]
 texture_filter = 1
 position = Vector2(599, 198)
-collision_mask = 6
+collision_mask = 38
 script = ExtResource("1_lmiuo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
