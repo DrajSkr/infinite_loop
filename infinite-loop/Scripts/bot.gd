@@ -16,7 +16,7 @@ func _ready():
 	$Timer.start(randf_range(max(0.5,2-0.05*Global.round),max(1,4-0.05*Global.round)))
 	$side_timer.start(randf_range(3,6))
 
-func _process(delta):
+func _process(_delta):
 	var min_ind :int=0
 	var dist :float= 3000.0
 	for i in range(4):
@@ -63,7 +63,7 @@ func reload():
 	$Timer.stop()
 	$pistol.play("reload")
 	ammo=FULL_AMMO
-	await get_tree().create_timer(0.67)
+	await get_tree().create_timer(0.67).timeout
 	$Timer.start(1)
 	reloading=false
 
@@ -78,3 +78,9 @@ func shoot():
 	
 func calculate_score():
 	Global.score=Global.kill_bot*10
+
+
+func _on_area_2d_body_entered(body):
+	if(body.is_in_group("Enemy")):
+		body.hp-=100
+		hp-=50

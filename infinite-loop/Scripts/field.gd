@@ -14,7 +14,6 @@ var curr_frame = []
 
 
 func _ready():
-	$AudioStreamPlayer.play()
 	$player.global_position=Global.player_pos
 	for i in range(Global.enemy_pos.size()):
 		spawn_enemies()
@@ -33,11 +32,12 @@ func _ready():
 	Global.connect("shoot",_shoot)
 	Global.connect("enemy_shoot",_enemy_shoot)
 
-func _process(delta):
+func _process(_delta):
 	$CanvasLayer/Label4.text = "Time Left: "+str(int($Timer.time_left*10)/10.0)
 	$CanvasLayer/Label.text = "Score: "+str(Global.score)
 	$CanvasLayer/Label2.text = "Allies: " + str($Enemies.get_child_count()+1) + str("/4")
 	$CanvasLayer/Label3.text = "Enemies left: "+str($bots.get_child_count())
+	$CanvasLayer/Label5.text = "Round: "+str(Global.round)
 	$CanvasLayer/ProgressBar.value = Global.player_hp
 	if(recording):
 		curr_pos.append($player.global_position)
@@ -52,6 +52,7 @@ func _process(delta):
 			if($Enemies.get_child(i).is_in_group("Enemy")):
 				Global.kill_enemy+=1
 				Global.live_pos[i+1]=Vector2(-2000,-2000)
+				$AudioStreamPlayer3.play(0.4)
 			calculate_score()
 			$Enemies.get_child(i).queue_free()
 			Global.enemy_anim.remove_at(i)
@@ -108,6 +109,7 @@ func _on_timer_timeout():
 	Global.enemy_hp.append(100)
 	for i in range($bots.get_child_count()):
 		Global.bot_hp.append($bots.get_child(i).hp)
+	$player.hp = min($player.hp+10,100)
 	round_end()
 	
 func spawn_enemies():

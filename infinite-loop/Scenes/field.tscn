@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://jvnylyoo38ow"]
+[gd_scene load_steps=7 format=3 uid="uid://jvnylyoo38ow"]
 
 [ext_resource type="Script" path="res://Scripts/field.gd" id="1_a7sgq"]
 [ext_resource type="PackedScene" uid="uid://d0od0l8q8xsvq" path="res://Scenes/player.tscn" id="2_jgqe1"]
 [ext_resource type="PackedScene" uid="uid://dbongenc4lrxq" path="res://Scenes/trees.tscn" id="3_wu46t"]
 [ext_resource type="AudioStream" uid="uid://bu50gl5mo230a" path="res://Music/suspense-tension-background-music-302978.mp3" id="4_pv4ff"]
 [ext_resource type="AudioStream" uid="uid://cd6lww63j7vbj" path="res://Music/ttsmaker-file-2025-3-23-14-39-20.mp3" id="5_qlxra"]
+[ext_resource type="AudioStream" uid="uid://b1ke2jhduvtfk" path="res://Music/young-man-being-hurt-95628.mp3" id="6_raic0"]
 
 [node name="field" type="Node2D"]
 script = ExtResource("1_a7sgq")
@@ -121,10 +122,18 @@ offset_bottom = 124.0
 theme_override_font_sizes/font_size = 30
 
 [node name="Label4" type="Label" parent="CanvasLayer"]
-offset_left = 918.0
-offset_top = 27.0
-offset_right = 958.0
-offset_bottom = 69.0
+offset_left = 27.0
+offset_top = 133.0
+offset_right = 107.0
+offset_bottom = 175.0
+theme_override_font_sizes/font_size = 30
+text = "Time:"
+
+[node name="Label5" type="Label" parent="CanvasLayer"]
+offset_left = 922.0
+offset_top = 41.0
+offset_right = 1002.0
+offset_bottom = 83.0
 theme_override_font_sizes/font_size = 30
 text = "Time:"
 
@@ -160,9 +169,14 @@ text = "Round Cleared"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_pv4ff")
+autoplay = true
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_qlxra")
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_raic0")
+max_polyphony = 10
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 

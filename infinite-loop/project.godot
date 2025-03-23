@@ -94,6 +94,7 @@ pointing/emulate_touch_from_mouse=true
 2d_physics/layer_5="enemy"
 2d_physics/layer_6="enemy_bullet"
 2d_physics/layer_7="bot"
+2d_physics/layer_8="allie detector"
 
 [rendering]
 

@@ -11,7 +11,7 @@ var ammo = FULL_AMMO
 
 
 
-func _unhandled_input(event):
+func _unhandled_input(_event):
 	if(Input.is_action_just_pressed("shoot")):
 		if(shooting or reloading or ammo<=0):
 			return
@@ -24,7 +24,7 @@ func _unhandled_input(event):
 func _ready():
 	hp= Global.player_hp
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	Global.player_hp = hp
 	global_position.y = min(1150,global_position.y)
 	global_position.x = min(1850,global_position.x)

@@ -26,7 +26,7 @@ func _ready():
 		$bots.get_child(i).text = "Enemy :"+str(i+1)
 	for i in range($enemies.get_child_count()):
 		$enemies.get_child(i).text = "Ally :"+str(i+1)
-func _unhandled_input(event):
+func _unhandled_input(_event):
 	if Input.is_action_just_pressed("shoot"):
 		var ct=0
 		for i in range(5):

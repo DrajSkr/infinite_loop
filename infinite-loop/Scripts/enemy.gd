@@ -14,7 +14,7 @@ var reloading = false
 func _ready():
 	prev_hp=hp
 
-func _process(delta):
+func _process(_delta):
 	if($blood.self_modulate.a>0):
 		$blood.self_modulate.a=max($blood.self_modulate.a-0.15,0)
 	$pistol.animation = anim
@@ -32,7 +32,7 @@ func _process(delta):
 func reload():
 	reloading = true
 	$pistol.play("reload")
-	await get_tree().create_timer(0.67)
+	await get_tree().create_timer(0.67).timeout
 	reloading=false
 
 func shoot():

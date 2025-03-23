@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=3 uid="uid://btrcq17cbljmy"]
+[gd_scene load_steps=86 format=3 uid="uid://btrcq17cbljmy"]
 
 [ext_resource type="Script" path="res://Scripts/bot.gd" id="1_jndfe"]
 [ext_resource type="Texture2D" uid="uid://bcreu6jsbq1pd" path="res://Assets/Top_Down_Survivor_2/Top_Down_Survivor/handgun/idle/survivor-idle_handgun_0.png" id="2_1hr35"]
@@ -358,11 +358,14 @@ animations = [{
 "speed": 40.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_o56o0"]
+radius = 40.0
+
 [node name="bot" type="CharacterBody2D" groups=["Bot"]]
 z_index = -1
 scale = Vector2(0.3, 0.3)
 collision_layer = 16
-collision_mask = 12
+collision_mask = 13
 script = ExtResource("1_jndfe")
 
 [node name="blood" type="AnimatedSprite2D" parent="."]
@@ -409,5 +412,13 @@ step = 1.0
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
 
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_o56o0")
+
 [connection signal="timeout" from="side_timer" to="." method="_on_side_timer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
