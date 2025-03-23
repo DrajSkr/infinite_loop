@@ -65,5 +65,8 @@ func reload():
 	ammo=FULL_AMMO
 
 func dead():
+	Fade.fade_out(1,Color.BLACK,"Diagonal",false,true)
+	await get_tree().create_timer(1.0).timeout
+	Fade.fade_in(0.01)
 	get_tree().change_scene_to_file("res://Scenes/htp.tscn")
 	

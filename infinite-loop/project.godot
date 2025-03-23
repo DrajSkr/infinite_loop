@@ -18,7 +18,8 @@ config/name="Infinite loop"
 run/main_scene="res://Scenes/ui.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 run/max_fps=60
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0.243137, 0.235294, 0.254902, 1)
+boot_splash/image="res://Assets/Screenshot 2025-03-23 181041.png"
 
 [autoload]
 

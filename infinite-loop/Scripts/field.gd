@@ -14,6 +14,7 @@ var curr_frame = []
 
 
 func _ready():
+	Global.connect("dam",_dam)
 	$player.global_position=Global.player_pos
 	for i in range(Global.enemy_pos.size()):
 		spawn_enemies()
@@ -135,3 +136,6 @@ func generate_loc():
 			generate_loc()
 			break
 	return pos
+
+func _dam(d,whom):
+	whom.hp-=d

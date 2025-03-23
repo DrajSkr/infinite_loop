@@ -21,7 +21,7 @@ func _process(_delta):
 	$pistol.frame = anim_frame
 	$ProgressBar.value = hp
 	$ProgressBar.rotation_degrees = -rotation_degrees
-	$ProgressBar.global_position = Vector2(global_position.x-90,global_position.y-100)
+	$ProgressBar.global_position = Vector2(global_position.x-30,global_position.y-40)
 	$pistol/muzzle.visible= anim=="shoot"
 	if(prev_hp!=hp):
 		$blood.play("default")

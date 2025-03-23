@@ -25,3 +25,4 @@ var enemy_frame = []
 
 signal shoot
 signal enemy_shoot(global_pos,global_rot)
+signal dam(d,whom)

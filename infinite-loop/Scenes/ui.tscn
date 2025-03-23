@@ -21,16 +21,16 @@ texture = ExtResource("1_f2jgw")
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
 offset_left = 166.0
-offset_top = 152.0
+offset_top = 75.0
 offset_right = 1819.0
 offset_bottom = 1148.0
 
 [node name="play" type="Button" parent="Panel"]
 layout_mode = 0
 offset_left = 335.0
-offset_top = 255.0
+offset_top = 327.0
 offset_right = 1287.0
-offset_bottom = 378.0
+offset_bottom = 472.0
 theme_override_font_sizes/font_size = 100
 text = "Play"
 
@@ -42,6 +42,17 @@ offset_right = 1285.0
 offset_bottom = 743.0
 theme_override_font_sizes/font_size = 100
 text = "Quit"
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 350.0
+offset_top = 22.0
+offset_right = 1278.0
+offset_bottom = 159.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 100
+text = "Past Me, Assemble!"
+horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0

@@ -82,5 +82,7 @@ func calculate_score():
 
 func _on_area_2d_body_entered(body):
 	if(body.is_in_group("Enemy")):
-		body.hp-=100
-		hp-=50
+		Global.emit_signal("dam",50,body)
+		Global.kill_bot+=1
+		calculate_score()
+		queue_free()
