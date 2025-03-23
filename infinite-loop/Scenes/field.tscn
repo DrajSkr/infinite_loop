@@ -1,23 +1,52 @@
-[gd_scene load_steps=5 format=3 uid="uid://jvnylyoo38ow"]
+[gd_scene load_steps=6 format=3 uid="uid://jvnylyoo38ow"]
 
 [ext_resource type="Script" path="res://Scripts/field.gd" id="1_a7sgq"]
 [ext_resource type="PackedScene" uid="uid://d0od0l8q8xsvq" path="res://Scenes/player.tscn" id="2_jgqe1"]
 [ext_resource type="PackedScene" uid="uid://dbongenc4lrxq" path="res://Scenes/trees.tscn" id="3_wu46t"]
-[ext_resource type="PackedScene" uid="uid://btrcq17cbljmy" path="res://Scenes/bot.tscn" id="4_mfb3g"]
+[ext_resource type="AudioStream" uid="uid://bu50gl5mo230a" path="res://Music/suspense-tension-background-music-302978.mp3" id="4_pv4ff"]
+[ext_resource type="AudioStream" uid="uid://cd6lww63j7vbj" path="res://Music/ttsmaker-file-2025-3-23-14-39-20.mp3" id="5_qlxra"]
 
 [node name="field" type="Node2D"]
 script = ExtResource("1_a7sgq")
 
+[node name="ColorRect2" type="ColorRect" parent="."]
+z_index = -2
+offset_left = -956.0
+offset_top = -615.0
+offset_right = 2923.0
+offset_bottom = 1912.0
+mouse_filter = 2
+color = Color(0.301961, 0.921569, 0.945098, 1)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -2
+offset_right = 1920.0
+offset_bottom = 1200.0
+mouse_filter = 2
+color = Color(0.362464, 0.977329, 0.213224, 1)
+
 [node name="player" parent="." instance=ExtResource("2_jgqe1")]
-position = Vector2(-280, -147)
+position = Vector2(899, 857)
 
 [node name="pistol" parent="player" index="1"]
 animation = &"shoot"
 
-[node name="bullets" type="Node2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="player"]
+scale = Vector2(3, 3)
+zoom = Vector2(3, 3)
+limit_left = 0
+limit_top = 0
+limit_right = 1920
+limit_bottom = 1200
+limit_smoothed = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.1
+drag_top_margin = 0.1
+drag_right_margin = 0.1
+drag_bottom_margin = 0.1
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(71, -38)
+[node name="bullets" type="Node2D" parent="."]
 
 [node name="Label" type="Label" parent="."]
 offset_left = -920.0
@@ -26,21 +55,119 @@ offset_right = -880.0
 offset_bottom = -546.0
 theme_override_font_sizes/font_size = 40
 
-[node name="trees" parent="." instance=ExtResource("3_wu46t")]
-position = Vector2(-393, 121)
-scale = Vector2(3, 3)
-
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="bots" type="Node2D" parent="."]
-
-[node name="bot" parent="bots" instance=ExtResource("4_mfb3g")]
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0
 one_shot = true
 autostart = true
 
+[node name="tree" type="Node2D" parent="."]
+
+[node name="trees" parent="tree" instance=ExtResource("3_wu46t")]
+position = Vector2(269, 275)
+
+[node name="trees2" parent="tree" instance=ExtResource("3_wu46t")]
+position = Vector2(441, 856)
+
+[node name="leaf" parent="tree/trees2" index="0"]
+position = Vector2(-17, 19)
+frame = 6
+
+[node name="trees3" parent="tree" instance=ExtResource("3_wu46t")]
+position = Vector2(897, 452)
+
+[node name="leaf" parent="tree/trees3" index="0"]
+position = Vector2(-3, 3)
+frame = 1
+
+[node name="trees4" parent="tree" instance=ExtResource("3_wu46t")]
+position = Vector2(1305, 981)
+
+[node name="leaf" parent="tree/trees4" index="0"]
+position = Vector2(4, 23)
+frame = 8
+
+[node name="trees5" parent="tree" instance=ExtResource("3_wu46t")]
+position = Vector2(1556, 175)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -184.0
+offset_top = 10.0
+offset_right = -144.0
+offset_bottom = 52.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 30
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+offset_left = 42.0
+offset_top = 26.0
+offset_right = 82.0
+offset_bottom = 68.0
+theme_override_font_sizes/font_size = 30
+
+[node name="Label3" type="Label" parent="CanvasLayer"]
+offset_left = 42.0
+offset_top = 82.0
+offset_right = 82.0
+offset_bottom = 124.0
+theme_override_font_sizes/font_size = 30
+
+[node name="Label4" type="Label" parent="CanvasLayer"]
+offset_left = 918.0
+offset_top = 27.0
+offset_right = 958.0
+offset_bottom = 69.0
+theme_override_font_sizes/font_size = 30
+text = "Time:"
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -190.0
+offset_top = -65.0
+offset_right = 164.0
+offset_bottom = -38.0
+grow_horizontal = 2
+grow_vertical = 0
+step = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
+offset_right = 1934.0
+offset_bottom = 1208.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer/ColorRect"]
+layout_mode = 0
+offset_left = 604.0
+offset_top = 463.0
+offset_right = 1314.0
+offset_bottom = 600.0
+theme_override_font_sizes/font_size = 100
+text = "Round Cleared"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_pv4ff")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_qlxra")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 
 [editable path="player"]
+[editable path="tree/trees2"]
+[editable path="tree/trees3"]
+[editable path="tree/trees4"]
+[editable path="tree/trees5"]

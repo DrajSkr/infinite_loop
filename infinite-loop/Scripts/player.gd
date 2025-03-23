@@ -21,8 +21,16 @@ func _unhandled_input(event):
 			return
 		reload()
 		
+func _ready():
+	hp= Global.player_hp
 
 func _physics_process(delta):
+	Global.player_hp = hp
+	global_position.y = min(1150,global_position.y)
+	global_position.x = min(1850,global_position.x)
+	global_position.x = max(50,global_position.x)
+	global_position.y = max(50,global_position.y)
+		
 	if(hp<=0):
 		dead()
 	Global.player_pos = global_position
@@ -39,6 +47,7 @@ func _physics_process(delta):
 	
 func fire():
 	shooting=true
+	$shoot_sound.play()
 	$pistol.play("shoot")
 	Global.emit_signal("shoot")
 	ammo-=1
@@ -48,6 +57,7 @@ func fire():
 		reload()
 
 func reload():
+	$reload_sound.play(1.88-0.67)
 	reloading = true
 	$pistol.play("reload")
 	await get_tree().create_timer(0.67).timeout
@@ -55,5 +65,5 @@ func reload():
 	ammo=FULL_AMMO
 
 func dead():
-	queue_free()
+	get_tree().change_scene_to_file("res://Scenes/htp.tscn")
 	

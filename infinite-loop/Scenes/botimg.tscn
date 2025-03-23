@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsaq6aum2fr32"]
+
+[ext_resource type="Texture2D" uid="uid://bcreu6jsbq1pd" path="res://Assets/Top_Down_Survivor_2/Top_Down_Survivor/handgun/idle/survivor-idle_handgun_0.png" id="1_to3s3"]
+[ext_resource type="Script" path="res://Scripts/botimg.gd" id="2_ln3ii"]
+
+[node name="botimg" type="Sprite2D"]
+self_modulate = Color(1, 0.156863, 0.219608, 1)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_to3s3")
+script = ExtResource("2_ln3ii")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -293.0
+offset_top = 100.0
+offset_right = 297.0
+offset_bottom = 169.0
+theme_override_font_sizes/font_size = 50
+horizontal_alignment = 1

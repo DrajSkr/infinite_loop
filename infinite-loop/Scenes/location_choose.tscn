@@ -1,0 +1,74 @@
+[gd_scene load_steps=3 format=3 uid="uid://dctvan66770vr"]
+
+[ext_resource type="Script" path="res://Scripts/location_choose.gd" id="1_0vhh5"]
+[ext_resource type="PackedScene" uid="uid://dbongenc4lrxq" path="res://Scenes/trees.tscn" id="1_upeda"]
+
+[node name="location_choose" type="Node2D"]
+script = ExtResource("1_0vhh5")
+
+[node name="tree" type="Node2D" parent="."]
+
+[node name="trees" parent="tree" instance=ExtResource("1_upeda")]
+position = Vector2(269, 275)
+
+[node name="trees2" parent="tree" instance=ExtResource("1_upeda")]
+position = Vector2(441, 856)
+
+[node name="leaf" parent="tree/trees2" index="0"]
+position = Vector2(-17, 19)
+frame = 6
+
+[node name="trees3" parent="tree" instance=ExtResource("1_upeda")]
+position = Vector2(897, 452)
+
+[node name="leaf" parent="tree/trees3" index="0"]
+position = Vector2(-3, 3)
+frame = 1
+
+[node name="trees4" parent="tree" instance=ExtResource("1_upeda")]
+position = Vector2(1305, 981)
+
+[node name="leaf" parent="tree/trees4" index="0"]
+position = Vector2(4, 23)
+frame = 8
+
+[node name="trees5" parent="tree" instance=ExtResource("1_upeda")]
+position = Vector2(1556, 175)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+z_index = -2
+offset_left = -956.0
+offset_top = -615.0
+offset_right = 2923.0
+offset_bottom = 1912.0
+mouse_filter = 2
+color = Color(0.301961, 0.921569, 0.945098, 1)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -2
+offset_right = 1920.0
+offset_bottom = 1200.0
+mouse_filter = 2
+color = Color(0.362464, 0.977329, 0.213224, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(960, 600)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 662.0
+offset_top = 24.0
+offset_right = 1190.0
+offset_bottom = 79.0
+theme_override_font_sizes/font_size = 40
+text = "Choose a location to spawn"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="bots" type="Node2D" parent="."]
+
+[node name="enemies" type="Node2D" parent="."]
+
+[editable path="tree/trees2"]
+[editable path="tree/trees3"]
+[editable path="tree/trees4"]
+[editable path="tree/trees5"]

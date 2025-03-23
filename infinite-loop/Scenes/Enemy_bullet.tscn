@@ -10,8 +10,8 @@ size = Vector2(4, 6)
 modulate = Color(1, 0.419608, 0.427451, 1)
 z_index = -1
 scale = Vector2(0.5, 0.5)
-collision_layer = 2
-collision_mask = 5
+collision_layer = 34
+collision_mask = 21
 script = ExtResource("1_rtvsv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

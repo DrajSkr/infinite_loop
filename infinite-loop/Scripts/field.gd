@@ -3,6 +3,7 @@ extends Node2D
 @onready var bullet = preload("res://Scenes/bullet.tscn")
 @onready var enemy_bullet = preload("res://Scenes/Enemy_bullet.tscn")
 @onready var enemy = preload("res://Scenes/enemy.tscn")
+@onready var bot = preload("res://Scenes/bot.tscn")
 var recording = false
 
 var j = 0
@@ -13,10 +14,18 @@ var curr_frame = []
 
 
 func _ready():
-	Global.round+=1
-	
+	$AudioStreamPlayer.play()
+	$player.global_position=Global.player_pos
 	for i in range(Global.enemy_pos.size()):
 		spawn_enemies()
+	Global.bot_hp.clear()
+	for i in range(Global.bot_pos.size()):
+		var bots = bot.instantiate()
+		get_node("bots").add_child(bots)
+		bots.global_position = Global.bot_pos[i]
+	for i in range(Global.bot_pos.size()):
+		$bots.get_child(i).global_position = Global.bot_pos[i]
+	
 	for i in range($Enemies.get_child_count()):
 		$Enemies.get_child(i).hp= Global.enemy_hp[i]
 	
@@ -25,16 +34,24 @@ func _ready():
 	Global.connect("enemy_shoot",_enemy_shoot)
 
 func _process(delta):
-	$Label.text = "Fps: "+str(Engine.get_frames_per_second())
+	$CanvasLayer/Label4.text = "Time Left: "+str(int($Timer.time_left*10)/10.0)
+	$CanvasLayer/Label.text = "Score: "+str(Global.score)
+	$CanvasLayer/Label2.text = "Allies: " + str($Enemies.get_child_count()+1) + str("/4")
+	$CanvasLayer/Label3.text = "Enemies left: "+str($bots.get_child_count())
+	$CanvasLayer/ProgressBar.value = Global.player_hp
 	if(recording):
 		curr_pos.append($player.global_position)
 		curr_rot.append($player.global_rotation)
 		curr_anim.append($player/pistol.animation)
 		curr_frame.append($player/pistol.frame)
+	
+	Global.live_pos[0]=$player.global_position
 	for i in range($Enemies.get_child_count()):
+		Global.live_pos[i+1]=$Enemies.get_child(i).global_position
 		if($Enemies.get_child(i).hp<=0):
 			if($Enemies.get_child(i).is_in_group("Enemy")):
 				Global.kill_enemy+=1
+				Global.live_pos[i+1]=Vector2(-2000,-2000)
 			calculate_score()
 			$Enemies.get_child(i).queue_free()
 			Global.enemy_anim.remove_at(i)
@@ -56,10 +73,10 @@ func _process(delta):
 			$Enemies.get_child(i).anim_frame = Global.enemy_frame[i][j]
 		if(j>0 and j<Global.enemy_anim[i].size()):
 			if(Global.enemy_anim[i][j-1]!="shoot" and Global.enemy_anim[i][j]=="shoot"):
-				var blt = enemy_bullet.instantiate()
+				var blt = bullet.instantiate()
 				get_node("bullets").add_child(blt)
 				blt.global_position=$Enemies.get_child(i).get_node("pistol").get_node("blt_pos").global_position
-				blt.dir = Vector2(1,0).rotated($Enemies.get_child(i).global_rotation)
+				#blt.dir = Vector2(1,0).rotated($Enemies.get_child(i).global_rotation)
 				blt.global_rotation = $Enemies.get_child(i).global_rotation
 	j+=1
 	Global.enemy_ct = $Enemies.get_child_count()
@@ -89,6 +106,8 @@ func _on_timer_timeout():
 	for i in range($Enemies.get_child_count()):
 		Global.enemy_hp.append($Enemies.get_child(i).hp)
 	Global.enemy_hp.append(100)
+	for i in range($bots.get_child_count()):
+		Global.bot_hp.append($bots.get_child(i).hp)
 	round_end()
 	
 func spawn_enemies():
@@ -96,7 +115,21 @@ func spawn_enemies():
 	get_node("Enemies").add_child(enemies)
 
 func round_end():
-	get_tree().reload_current_scene()
+	$CanvasLayer/ColorRect.visible=true
+	$AudioStreamPlayer2.play()
+	Fade.fade_out(1,Color.BLACK,"Diagonal",false,true)
+	await get_tree().create_timer(1).timeout
+	Fade.fade_in(0.01)
+	get_tree().change_scene_to_file("res://Scenes/location_choose.tscn")
+	
 
 func calculate_score():
-	Global.score=Global.kill_enemy*5+Global.kill_bot*10
+	Global.score=Global.kill_bot*10
+
+func generate_loc():
+	var pos = Vector2(randi_range(70,1850),randi_range(70,1130))
+	for i in range($tree.get_child_count()):
+		if($tree.get_child(i).global_position.distance_to(pos)<70):
+			generate_loc()
+			break
+	return pos

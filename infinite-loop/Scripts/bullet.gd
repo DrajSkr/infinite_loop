@@ -15,6 +15,6 @@ func _process(delta):
 
 
 func _on_area_2d_body_entered(body):
-	if(body.is_in_group("Enemy") or body.is_in_group("Bot")):
+	if(body.is_in_group("Bot")):
 		body.hp -= 20
 	queue_free()

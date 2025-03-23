@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://ofu1bgp87mbm"]
+
+[ext_resource type="Script" path="res://Scripts/ui.gd" id="1_bth5v"]
+[ext_resource type="Texture2D" uid="uid://bvqmbjvgkanlu" path="res://Gemini_Generated_Image_het3ghet3ghet3gh.jpg" id="1_f2jgw"]
+[ext_resource type="AudioStream" uid="uid://dkujc2eje7s3y" path="res://Music/battle-of-the-dragons-8037.mp3" id="3_xrws7"]
+
+[node name="ui" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bth5v")
+
+[node name="GeminiGeneratedImageHet3Ghet3Ghet3Gh" type="Sprite2D" parent="."]
+position = Vector2(962.5, 624.5)
+scale = Vector2(0.95459, 0.611816)
+texture = ExtResource("1_f2jgw")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 166.0
+offset_top = 152.0
+offset_right = 1819.0
+offset_bottom = 1148.0
+
+[node name="play" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 335.0
+offset_top = 255.0
+offset_right = 1287.0
+offset_bottom = 378.0
+theme_override_font_sizes/font_size = 100
+text = "Play"
+
+[node name="quit" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 348.0
+offset_top = 591.0
+offset_right = 1285.0
+offset_bottom = 743.0
+theme_override_font_sizes/font_size = 100
+text = "Quit"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1339.0
+offset_top = 1119.0
+offset_right = 1885.0
+offset_bottom = 1178.0
+theme_override_font_sizes/font_size = 20
+text = "Your allies are none other than you from previous round
+Good Luck escaping from this time loop...."
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_xrws7")
+autoplay = true
+
+[connection signal="pressed" from="Panel/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Panel/quit" to="." method="_on_quit_pressed"]

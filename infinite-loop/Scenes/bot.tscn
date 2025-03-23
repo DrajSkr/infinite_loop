@@ -360,6 +360,7 @@ animations = [{
 
 [node name="bot" type="CharacterBody2D" groups=["Bot"]]
 z_index = -1
+scale = Vector2(0.3, 0.3)
 collision_layer = 16
 collision_mask = 12
 script = ExtResource("1_jndfe")
@@ -375,7 +376,7 @@ sprite_frames = SubResource("SpriteFrames_7nwly")
 shape = SubResource("CircleShape2D_6qp3a")
 
 [node name="pistol" type="AnimatedSprite2D" parent="."]
-modulate = Color(0.486275, 0.941176, 1, 1)
+modulate = Color(1, 0.156863, 0.219608, 1)
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_lpaya")
 animation = &"reload"
@@ -407,7 +408,6 @@ step = 1.0
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
-autostart = true
 
 [connection signal="timeout" from="side_timer" to="." method="_on_side_timer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

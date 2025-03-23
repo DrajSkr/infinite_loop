@@ -1,0 +1,66 @@
+[gd_scene load_steps=3 format=3 uid="uid://bp7sdyosl6dmk"]
+
+[ext_resource type="Script" path="res://Scripts/htp.gd" id="1_8lx2n"]
+[ext_resource type="Texture2D" uid="uid://bvqmbjvgkanlu" path="res://Gemini_Generated_Image_het3ghet3ghet3gh.jpg" id="2_qsias"]
+
+[node name="htf" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8lx2n")
+
+[node name="GeminiGeneratedImageHet3Ghet3Ghet3Gh" type="Sprite2D" parent="."]
+position = Vector2(962.5, 624.5)
+scale = Vector2(0.95459, 0.611816)
+texture = ExtResource("2_qsias")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 166.0
+offset_top = 58.0
+offset_right = 1819.0
+offset_bottom = 1148.0
+
+[node name="Score" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 272.0
+offset_top = -20.0
+offset_right = 1383.0
+offset_bottom = 253.0
+theme_override_font_sizes/font_size = 200
+text = "Score: "
+horizontal_alignment = 1
+
+[node name="Bs" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 272.0
+offset_top = 272.0
+offset_right = 1328.0
+offset_bottom = 545.0
+theme_override_font_sizes/font_size = 100
+text = "Best Score:"
+horizontal_alignment = 1
+
+[node name="play again" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 481.0
+offset_top = 612.0
+offset_right = 1122.0
+offset_bottom = 711.0
+theme_override_font_sizes/font_size = 100
+text = "Play Again"
+
+[node name="main menu" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 335.0
+offset_top = 801.0
+offset_right = 1249.0
+offset_bottom = 946.0
+theme_override_font_sizes/font_size = 100
+text = "Quit to Main Menu"
+
+[connection signal="pressed" from="Panel/play again" to="." method="_on_play_again_pressed"]
+[connection signal="pressed" from="Panel/main menu" to="." method="_on_main_menu_pressed"]

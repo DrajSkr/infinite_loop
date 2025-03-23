@@ -360,8 +360,9 @@ animations = [{
 
 [node name="enemy" type="CharacterBody2D" groups=["Enemy"]]
 z_index = -1
+scale = Vector2(0.3, 0.3)
 collision_layer = 16
-collision_mask = 12
+collision_mask = 36
 script = ExtResource("1_70ffm")
 
 [node name="blood" type="AnimatedSprite2D" parent="."]
@@ -377,7 +378,7 @@ frame_progress = 1.0
 shape = SubResource("CircleShape2D_6qp3a")
 
 [node name="pistol" type="AnimatedSprite2D" parent="."]
-modulate = Color(0.968627, 0.364706, 0.294118, 1)
+modulate = Color(0.0941176, 1, 0.0352941, 1)
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_lpaya")
 animation = &"reload"

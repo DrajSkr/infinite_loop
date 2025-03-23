@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://d0od0l8q8xsvq"]
+[gd_scene load_steps=79 format=3 uid="uid://d0od0l8q8xsvq"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_lmiuo"]
 [ext_resource type="Texture2D" uid="uid://bcreu6jsbq1pd" path="res://Assets/Top_Down_Survivor_2/Top_Down_Survivor/handgun/idle/survivor-idle_handgun_0.png" id="2_m2kf5"]
@@ -74,6 +74,8 @@
 [ext_resource type="Texture2D" uid="uid://eth6jvblxn7b" path="res://Assets/Top_Down_Survivor_2/Top_Down_Survivor/handgun/move/survivor-move_handgun_18.png" id="72_fbpm6"]
 [ext_resource type="Texture2D" uid="uid://dsefn6e5cqak4" path="res://Assets/Top_Down_Survivor_2/Top_Down_Survivor/handgun/move/survivor-move_handgun_19.png" id="73_j6h00"]
 [ext_resource type="Texture2D" uid="uid://b65lwtwnv3tpn" path="res://Assets/muzzle_flash.png" id="74_ghpst"]
+[ext_resource type="AudioStream" uid="uid://bpf0a5upyvigh" path="res://Music/glock-reload-101soundboards.mp3" id="75_uvi33"]
+[ext_resource type="AudioStream" uid="uid://bfo57xc82ly7a" path="res://Music/glock-101soundboards.mp3" id="76_vysiv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_syhm3"]
 radius = 79.2465
@@ -324,7 +326,7 @@ animations = [{
 
 [node name="player" type="CharacterBody2D" groups=["Player"]]
 texture_filter = 1
-position = Vector2(599, 198)
+scale = Vector2(0.3, 0.3)
 collision_mask = 38
 script = ExtResource("1_lmiuo")
 
@@ -346,3 +348,10 @@ texture = ExtResource("74_ghpst")
 
 [node name="blt_pos" type="Node2D" parent="pistol"]
 position = Vector2(119, 53)
+
+[node name="reload_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("75_uvi33")
+
+[node name="shoot_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("76_vysiv")
+max_polyphony = 5
